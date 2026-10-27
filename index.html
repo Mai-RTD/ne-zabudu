@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Не забуду — сайт, который помогает запоминать домашку</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-main">
+      <h1 class="app-name">Не забуду</h1>
+      <p class="app-tagline">сайт, который помогает запоминать домашку</p>
+    </div>
+    <p class="header-date" id="header-date"></p>
+  </header>
+
+  <main class="app-main">
+    <section id="screen-homework" class="screen" aria-labelledby="homework-title">
+      <h2 id="homework-title" class="screen-title">Домашка</h2>
+      <p class="greeting">Привет, Зоя!</p>
+      <p class="counter" id="homework-counter">Осталось: 0</p>
+      <div id="homework-list" class="list"></div>
+      <div id="homework-empty" class="empty" hidden>Пока пусто. Добавь первую домашку</div>
+    </section>
+
+    <section id="screen-timetable" class="screen" aria-labelledby="timetable-title">
+      <div class="timetable-head">
+        <h2 id="timetable-title" class="screen-title">Расписание</h2>
+        <button id="timetable-edit-btn" class="btn-text" type="button">Изменить</button>
+      </div>
+      <p id="timetable-weekend" class="note" hidden>Сегодня выходной</p>
+      <div id="timetable-list" class="timetable"></div>
+    </section>
+  </main>
+
+  <button id="fab-add" class="fab" type="button" aria-label="Добавить домашку" hidden>+</button>
+
+  <nav class="bottom-nav">
+    <button class="nav-btn active" data-screen="homework" type="button">
+      <span class="nav-icon" aria-hidden="true">📚</span>
+      <span class="nav-label">Домашка</span>
+    </button>
+    <button class="nav-btn" data-screen="timetable" type="button">
+      <span class="nav-icon" aria-hidden="true">🗓️</span>
+      <span class="nav-label">Расписание</span>
+    </button>
+  </nav>
+
+  <dialog id="homework-dialog" class="dialog">
+    <form id="homework-form" class="dialog-form" method="dialog">
+      <h3 class="dialog-title" id="hw-dialog-title">Новая домашка</h3>
+      <label class="field">
+        <span class="label">Предмет</span>
+        <input id="hw-subject" type="text" list="subject-list" required autocomplete="off">
+      </label>
+      <datalist id="subject-list"></datalist>
+      <label class="field">
+        <span class="label">Задание</span>
+        <textarea id="hw-task" rows="3" required></textarea>
+      </label>
+      <label class="field">
+        <span class="label">Сдать до</span>
+        <input id="hw-due" type="date" required>
+      </label>
+      <p id="hw-error" class="error" role="alert" hidden></p>
+      <div class="dialog-actions">
+        <button type="button" class="btn ghost" id="hw-cancel">Отмена</button>
+        <button type="submit" class="btn primary" id="hw-save">Сохранить</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="lesson-dialog" class="dialog">
+    <form id="lesson-form" class="dialog-form" method="dialog">
+      <h3 class="dialog-title" id="lesson-dialog-title">Урок</h3>
+      <label class="field">
+        <span class="label">День</span>
+        <select id="lesson-day" required></select>
+      </label>
+      <label class="field">
+        <span class="label">Время</span>
+        <input id="lesson-time" type="time" required>
+      </label>
+      <label class="field">
+        <span class="label">Предмет</span>
+        <input id="lesson-subject" type="text" list="subject-list" required autocomplete="off">
+      </label>
+      <label class="field">
+        <span class="label">Кабинет</span>
+        <input id="lesson-room" type="text" autocomplete="off">
+      </label>
+      <p id="lesson-error" class="error" role="alert" hidden></p>
+      <div class="dialog-actions">
+        <button type="button" class="btn ghost" id="lesson-cancel">Отмена</button>
+        <button type="button" class="btn danger" id="lesson-delete" hidden>Удалить</button>
+        <button type="submit" class="btn primary" id="lesson-save">Сохранить</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
